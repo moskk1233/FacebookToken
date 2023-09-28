@@ -12,6 +12,7 @@
 		"name": "Nonpawit Pothinil",
 		"email": "mosaggpothinil15@outlook.com"
 	},
+	"files": ["./lib"],
 	"license": "ISC",
 	"dependencies": {
 		"axios": "^1.5.1",

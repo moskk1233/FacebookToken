@@ -7,7 +7,7 @@ type AccessToken = {
 /**
  *  FacebookDevice เป็น libray ที่ใช้สำหรับการทำล็อกอินแบบ Token ใน Facebook
  */
-class FacebookDevice {
+export class FacebookDevice {
 	private accessToken: AccessToken;
 	private app_id: string;
 	private client_token: string;
@@ -78,5 +78,3 @@ class FacebookDevice {
 		return response.data;
 	}
 }
-
-export default FacebookDevice;
