@@ -16,7 +16,7 @@ class FacebookDevice {
 
 	/**
 	 *
-	 * @param {string} ACCESS_TOKEN {}
+	 * @param {AccessToken} accessToken
 	 */
 	constructor(accessToken: AccessToken) {
 		this.accessToken = accessToken;
@@ -43,6 +43,11 @@ class FacebookDevice {
 		return response.data;
 	}
 
+	/**
+	 *
+	 * @param {string} codeRef
+	 * @returns
+	 */
 	public async getUesrToken(codeRef: string) {
 		const response = await axios(`${this.ENDPOINT}/device/login_status`, {
 			method: 'POST',
@@ -54,6 +59,12 @@ class FacebookDevice {
 		return response.data;
 	}
 
+	/**
+	 *
+	 * @param {string[]} fields
+	 * @param {string} userToken
+	 * @returns
+	 */
 	public async getConfirm(fields: string[], userToken: string) {
 		let filedString = fields.join(',');
 
