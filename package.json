@@ -1,6 +1,6 @@
 {
 	"name": "@moskuza/facebooklogin",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -12,7 +12,9 @@
 		"name": "Nonpawit Pothinil",
 		"email": "mosaggpothinil15@outlook.com"
 	},
-	"files": ["./lib"],
+	"files": [
+		"./lib"
+	],
 	"license": "ISC",
 	"dependencies": {
 		"axios": "^1.5.1",
