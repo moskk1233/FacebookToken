@@ -12,10 +12,13 @@ export class FacebookDevice {
 	private app_id: string;
 	private client_token: string;
 	private ACCESSTOKEN: string;
-	private ENDPOINT = 'https://graph.facebook.com/v18.0';
+	private ENDPOINT = axios.create({
+		baseURL: 'https://graph.facebook.com/v18.0'
+	})
+
 
 	/**
-	 *
+	 * 
 	 * @param {AccessToken} accessToken
 	 */
 	constructor(accessToken: AccessToken) {
@@ -32,13 +35,10 @@ export class FacebookDevice {
 	 */
 	public async getDeviceCode(scope: string[]) {
 		const scopeString = scope.join(',');
-		const response = await axios(`${this.ENDPOINT}/device/login`, {
-			method: 'POST',
-			data: {
-				access_token: this.ACCESSTOKEN,
-				scope: scopeString,
-			},
-		});
+		const response = await this.ENDPOINT.post('/device/login', {
+			access_token: this.ACCESSTOKEN,
+			scope: scopeString
+		})
 
 		return response.data;
 	}
@@ -49,13 +49,10 @@ export class FacebookDevice {
 	 * @returns
 	 */
 	public async getUesrToken(codeRef: string) {
-		const response = await axios(`${this.ENDPOINT}/device/login_status`, {
-			method: 'POST',
-			data: {
-				access_token: this.ACCESSTOKEN,
-				code: codeRef,
-			},
-		});
+		const response = await this.ENDPOINT.post('/device/login_status', {
+			access_token: this.ACCESSTOKEN,
+			code: codeRef
+		})
 		return response.data;
 	}
 
@@ -66,15 +63,8 @@ export class FacebookDevice {
 	 * @returns
 	 */
 	public async getConfirm(fields: string[], userToken: string) {
-		let filedString = fields.join(',');
-
-		const response = await axios(
-			`${this.ENDPOINT}/me?fields=${filedString}&access_token=${userToken}`,
-			{
-				method: 'GET',
-			}
-		);
-
+		let fieldString = fields.join(',');
+		const response = await this.ENDPOINT.get(`/me?fields=${fieldString}&access_token=${userToken}`)
 		return response.data;
 	}
 }
